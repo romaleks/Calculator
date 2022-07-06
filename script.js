@@ -18,4 +18,9 @@ function changePosNeg(number) {
    return -number;
 }
 
-console.log(divideNumbers(4384, 23));
+function operate(numOne, numTwo, operator) {
+   if (operator === '+') return addNumbers(numOne, numTwo);
+   else if (operator === '−') return subtractNumbers(numOne, numTwo);
+   else if (operator === '×') return multiplyNumbers(numOne, numTwo);
+   else return divideNumbers(numOne, numTwo);
+}
