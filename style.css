@@ -9,12 +9,14 @@ body {
    align-items: center;
    height: 100vh;
    font-family: 'Nunito', sans-serif;
+   background-color: #CBFFFF;
 }
 .calculator {
    width: 300px;
    height: 540px;
    background-color: #06619C;
    border-radius: 25px;
+   box-shadow: 5px 4px 10px #06609c56;
    padding: 15px 20px;
 }
 .calculator__header {
