@@ -18,6 +18,10 @@ function clear() {
    operator = '';
 }
 
+function deleteSymbol() {
+   currentOperand = currentOperand.slice(0, -1);
+}
+
 function appendNumber(number) {
    if (number === '.' && currentOperand.includes('.')) return;
    if (currentOperand.length < 13) currentOperand += number;
@@ -64,6 +68,11 @@ function updateDisplay() {
 }
 
 allClearButton.onclick = () => clear();
+
+deleteButton.onclick = () => {
+   deleteSymbol();
+   updateDisplay();
+}
 
 equalsButton.onclick = () => {
    operate();
