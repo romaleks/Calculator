@@ -13,18 +13,34 @@ let currentOperand = '';
 function clear() {
    calculatorText.textContent = '';
    calculatorStore.textContent = '';
+   previousOperand = '';
+   currentOperand = '';
    operator = undefined;
 }
 
 function appendNumber(number) {
+   if (number === '.' && currentOperand.includes('.')) return;
    if (currentOperand.length < 13) currentOperand += number;
+}
+
+function chooseOperator(operator) {
+   operator = operator;
+   previousOperand = currentOperand;
+   currentOperand = '';
 }
 
 function updateDisplay() {
    calculatorText.textContent = currentOperand;
 }
 
+allClearButton.onclick = () => clear();
+
 numberButtons.forEach(button => button.addEventListener('click', () => {
    appendNumber(button.textContent);
+   updateDisplay();
+}));
+
+operatorButtons.forEach(button => button.addEventListener('click', () => {
+   chooseOperator(button.textContent);
    updateDisplay();
 }));
