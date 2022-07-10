@@ -6,7 +6,7 @@ const allClearButton = document.querySelector('[data-all-clear]');
 const calculatorStore = document.querySelector('[data-previous-operand]');
 const calculatorText = document.querySelector('[data-current-operand]');
 
-let operator;
+let operator = '';
 let previousOperand = '';
 let currentOperand = '';
 
@@ -15,7 +15,7 @@ function clear() {
    calculatorStore.textContent = '';
    previousOperand = '';
    currentOperand = '';
-   operator = undefined;
+   operator = '';
 }
 
 function appendNumber(number) {
@@ -23,14 +23,16 @@ function appendNumber(number) {
    if (currentOperand.length < 13) currentOperand += number;
 }
 
-function chooseOperator(operator) {
-   operator = operator;
+function chooseOperator(oper) {
+   if (currentOperand === '') return;
+   operator = oper;
    previousOperand = currentOperand;
    currentOperand = '';
 }
 
 function updateDisplay() {
    calculatorText.textContent = currentOperand;
+   calculatorStore.textContent = `${previousOperand} ${operator}`;
 }
 
 allClearButton.onclick = () => clear();
