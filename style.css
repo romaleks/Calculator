@@ -48,7 +48,7 @@ body {
 }
 .calculator__display {
    background-color: #05BED8;
-   border: 5px solid #059AAF;
+   border: 5px inset #059AAF;
    border-radius: 8px;
    font-family: digital;
    font-size: 42px;
