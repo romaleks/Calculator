@@ -25,9 +25,37 @@ function appendNumber(number) {
 
 function chooseOperator(oper) {
    if (currentOperand === '') return;
+   if (previousOperand !== '') {
+      operate();
+   }
    operator = oper;
    previousOperand = currentOperand;
    currentOperand = '';
+}
+
+function operate() {
+   let result;
+   const prev = parseFloat(previousOperand);
+   const curr = parseFloat(currentOperand);
+   switch (operator) {
+      case '+':
+         result = prev + curr;
+         break;
+      case '−':
+         result = prev - curr;
+         break;
+      case '×':
+         result = prev * curr;
+         break;
+      case '÷':
+         result = prev / curr;
+         break;
+      default:
+         return;
+   }
+   currentOperand = result;
+   operator = '';
+   previousOperand = '';
 }
 
 function updateDisplay() {
@@ -36,6 +64,11 @@ function updateDisplay() {
 }
 
 allClearButton.onclick = () => clear();
+
+equalsButton.onclick = () => {
+   operate();
+   updateDisplay();
+}
 
 numberButtons.forEach(button => button.addEventListener('click', () => {
    appendNumber(button.textContent);
