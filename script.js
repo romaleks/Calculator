@@ -3,6 +3,7 @@ const operatorButtons = document.querySelectorAll('[data-operator]');
 const equalsButton = document.querySelector('[data-equals]');
 const deleteButton = document.querySelector('[data-delete]');
 const allClearButton = document.querySelector('[data-all-clear]');
+const negativeButton = document.querySelector('[data-negative]');
 const calculatorStore = document.querySelector('[data-previous-operand]');
 const calculatorText = document.querySelector('[data-current-operand]');
 
@@ -20,6 +21,10 @@ function clear() {
 
 function deleteSymbol() {
    currentOperand = currentOperand.slice(0, -1);
+}
+
+function changeNegative () {
+   currentOperand = (-(parseFloat(currentOperand))).toString();
 }
 
 function appendNumber(number) {
@@ -71,6 +76,11 @@ allClearButton.onclick = () => clear();
 
 deleteButton.onclick = () => {
    deleteSymbol();
+   updateDisplay();
+}
+
+negativeButton.onclick = () => {
+   changeNegative();
    updateDisplay();
 }
 
