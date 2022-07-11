@@ -10,6 +10,7 @@ const calculatorText = document.querySelector('[data-current-operand]');
 let operator = '';
 let previousOperand = '';
 let currentOperand = '';
+let equalsOperator = false;
 
 function clear() {
    calculatorText.textContent = '';
@@ -29,7 +30,7 @@ function changeNegative () {
 
 function appendNumber(number) {
    if (number === '.' && currentOperand.includes('.')) return;
-   if (currentOperand.length < 13) currentOperand += number;
+   if (currentOperand.length < 12) currentOperand += number;
 }
 
 function chooseOperator(oper) {
@@ -78,7 +79,7 @@ function getDisplayNumber(number) {
       integerDisplay = integerDigits.toLocaleString('en', { maximumFractionDigits: 0 });
    }
    if (decimalDigits != null) {
-      return `${integerDisplay}.${decimalDigits}`
+      return `${integerDisplay}.${decimalDigits}`;
    } else return integerDisplay;
 }
 
@@ -102,14 +103,20 @@ negativeButton.onclick = () => {
 equalsButton.onclick = () => {
    operate();
    updateDisplay();
+   equalsOperator = true;
 }
 
 numberButtons.forEach(button => button.addEventListener('click', () => {
+   if (equalsOperator === true) {
+      clear();
+      equalsOperator = false;
+   }
    appendNumber(button.textContent);
    updateDisplay();
 }));
 
 operatorButtons.forEach(button => button.addEventListener('click', () => {
+   if (equalsOperator === true) equalsOperator = false;
    chooseOperator(button.textContent);
    updateDisplay();
 }));
