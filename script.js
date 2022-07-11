@@ -12,7 +12,7 @@ let previousOperand = '';
 let currentOperand = '';
 let equalsOperator = false;
 
-function clear() {
+function clear() {  // Clear all calculator's display
    calculatorText.textContent = '';
    calculatorStore.textContent = '';
    previousOperand = '';
@@ -20,24 +20,25 @@ function clear() {
    operator = '';
 }
 
-function deleteSymbol() {
+function deleteSymbol() {  // Delete one symbol of current operand
+   // Check if the operand have '-' and one symbol and clear the display if it is
    if (currentOperand.length === 2 && currentOperand.includes('-')) {
       currentOperand = '';
    }
    currentOperand = currentOperand.toString().slice(0, -1);
 }
 
-function changeNegative() {
+function changeNegative() {  // Make negative operand out of positive and on the contrary
    currentOperand = (-(parseFloat(currentOperand))).toString();
 }
 
-function appendNumber(number) {
-   if (number === '.' && currentOperand.includes('.')) return;
+function appendNumber(number) {  // Append a number to current operand
+   if (number === '.' && currentOperand.includes('.')) return;  // Don't allow to append more than 1 dot
    if (currentOperand.length < 13) currentOperand += number;
 }
 
-function chooseOperator(oper) {
-   if (currentOperand === '') return;
+function chooseOperator(oper) {  // Choose the operator
+   if (currentOperand === '') return; // Don't allow to choose operator while current operand is empty
    if (previousOperand !== '') {
       operate();
    }
@@ -46,7 +47,7 @@ function chooseOperator(oper) {
    currentOperand = '';
 }
 
-function operate() {
+function operate() {  // Calculates the expression
    let result;
    const prev = parseFloat(previousOperand);
    const curr = parseFloat(currentOperand);
@@ -71,7 +72,7 @@ function operate() {
    previousOperand = '';
 }
 
-function getDisplayNumber(number) {
+function getDisplayNumber(number) {  // Make integer part more readable
    const stringNumber = number.toString();
    const integerDigits = parseFloat(stringNumber.split('.')[0]);
    const decimalDigits = stringNumber.split('.')[1];
@@ -86,7 +87,7 @@ function getDisplayNumber(number) {
    } else return integerDisplay;
 }
 
-function updateDisplay() {
+function updateDisplay() {  // Updates the display
    calculatorText.textContent = getDisplayNumber(currentOperand);
    calculatorStore.textContent = `${getDisplayNumber(previousOperand)} ${operator}`;
 }
