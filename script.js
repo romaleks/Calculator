@@ -27,13 +27,13 @@ function deleteSymbol() {
    currentOperand = currentOperand.toString().slice(0, -1);
 }
 
-function changeNegative () {
+function changeNegative() {
    currentOperand = (-(parseFloat(currentOperand))).toString();
 }
 
 function appendNumber(number) {
    if (number === '.' && currentOperand.includes('.')) return;
-   if (currentOperand.length < 12) currentOperand += number;
+   if (currentOperand.length < 13) currentOperand += number;
 }
 
 function chooseOperator(oper) {
@@ -52,16 +52,16 @@ function operate() {
    const curr = parseFloat(currentOperand);
    switch (operator) {
       case '+':
-         result = prev + curr;
+         result = parseFloat((prev + curr).toPrecision(12));
          break;
       case '−':
-         result = prev - curr;
+         result = parseFloat((prev - curr).toPrecision(12));
          break;
       case '×':
-         result = prev * curr;
+         result = parseFloat((prev * curr).toPrecision(12));
          break;
       case '÷':
-         result = prev / curr;
+         result = parseFloat((prev / curr).toPrecision(12));
          break;
       default:
          return;
