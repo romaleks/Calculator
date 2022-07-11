@@ -21,7 +21,10 @@ function clear() {
 }
 
 function deleteSymbol() {
-   currentOperand = currentOperand.slice(0, -1);
+   if (currentOperand.length === 2 && currentOperand.includes('-')) {
+      currentOperand = '';
+   }
+   currentOperand = currentOperand.toString().slice(0, -1);
 }
 
 function changeNegative () {
